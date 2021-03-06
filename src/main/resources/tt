@@ -5,7 +5,6 @@ spring:
         authorization:
           provider-role-mappings:
             authserver:
-              map-oauth-scopes: true
               role-mappings:
                 ROLE_VIEW: ROLE_VIEW
                 ROLE_CREATE: ROLE_CREATE
