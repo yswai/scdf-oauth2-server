@@ -1,0 +1,67 @@
+{
+    "spring": {
+        "cloud": {
+            "dataflow": {
+                "security": {
+                    "authorization": {
+                        "provider-role-mappings": {
+                            "authserver": {
+                                "map-oauth-scopes": false,
+                                "role-mappings": {
+                                    "ROLE_VIEW": "ROLE_VIEW",
+                                    "ROLE_CREATE": "ROLE_CREATE",
+                                    "ROLE_MANAGE": "ROLE_MANAGE",
+                                    "ROLE_DEPLOY": "ROLE_DEPLOY",
+                                    "ROLE_DESTROY": "ROLE_DESTROY",
+                                    "ROLE_MODIFY": "ROLE_MODIFY",
+                                    "ROLE_SCHEDULE": "ROLE_SCHEDULE"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "security": {
+            "oauth2": {
+                "client": {
+                    "registration": {
+                        "authserver": {
+                            "redirect-uri": "http://192.168.0.100:9393/login/oauth2/code/{registrationId}",
+                            "authorization-grant-type": "authorization_code",
+                            "client-id": "clientId",
+                            "client-secret": "client-secret",
+                            "scope": [
+                                "dataflow.view",
+                                "dataflow.deploy",
+                                "dataflow.destroy",
+                                "dataflow.manage",
+                                "dataflow.modify",
+                                "dataflow.schedule",
+                                "dataflow.create"
+                            ]
+                        }
+                    },
+                    "provider": {
+                        "authserver": {
+                            "user-name-attribute": "name",
+                            "token-uri": "http://localhost:8080/oauth/token",
+                            "user-info-uri": "http://127.0.0.1:8080/me",
+                            "authorization-uri": "http://localhost:8080/oauth/authorize"
+                        }
+                    }
+                },
+                "resourceserver": {
+                    "opaquetoken": {
+                        "introspection-uri": "http://localhost:8080/oauth/check_token",
+                        "client-id": "clientId",
+                        "client-secret": "client-secret"
+                    }
+                },
+                "authorization": {
+                    "check-token-access": "isAuthenticated()"
+                }
+            }
+        }
+    }
+}
