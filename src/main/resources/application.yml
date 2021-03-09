@@ -2,6 +2,11 @@ logging:
   level:
     org.springframework.security: DEBUG
 
+server:
+  port: 8081
+
+redirectUrl: "http://192.168.99.107:31793/login/oauth2/code/authserver,https://oauth.pstmn.io/v1/callback"
+
 security:
   oauth2:
     resource:

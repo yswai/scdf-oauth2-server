@@ -2,6 +2,7 @@ package co.springcoders.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 //	@Autowired
 	private JwtTokenStore tokenStore;
 
+	@Value("${redirectUrl}")
+	private String redirectUrls;
+
 	@Autowired
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authenticationManager;
@@ -47,10 +51,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 							"dataflow.schedule",
 							"dataflow.create")
 		 			.authorizedGrantTypes("authorization_code", "refresh_token")
-		 			.redirectUris(
-		 					"http://192.168.0.100:9393/login/oauth2/code/authserver",
-							"https://oauth.pstmn.io/v1/callback"
-					)
+		 			.redirectUris(redirectUrls.split(","))
 		 			.autoApprove(true);
 	 }
 

@@ -10,13 +10,14 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>co.springcoders</groupId>
-	<artifactId>SpringAuthorizationServer</artifactId>
+	<artifactId>auth-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringAuthorizationServer</name>
 	<description>Spring Authorization Server</description>
 
 	<properties>
 		<java.version>11</java.version>
+		<docker.org>springcloud</docker.org>
 	</properties>
 
 	<dependencies>
@@ -71,6 +72,30 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>0.10.1</version>
+				<configuration>
+					<from>
+						<auth>
+							<username>yswai1986</username>
+							<password>1bm1icM!</password>
+						</auth>
+						<image>openjdk:11</image>
+					</from>
+					<to>
+						<auth>
+							<username>yswai1986</username>
+							<password>1bm1icM!</password>
+						</auth>
+						<image>${project.artifactId}:${project.version}</image>
+					</to>
+					<container>
+						<useCurrentTimestamp>true</useCurrentTimestamp>
+					</container>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

@@ -27,7 +27,7 @@
                 "client": {
                     "registration": {
                         "authserver": {
-                            "redirect-uri": "http://192.168.0.100:9393/login/oauth2/code/{registrationId}",
+                            "redirect-uri": "http://localhost:9393/login/oauth2/code/{registrationId}",
                             "authorization-grant-type": "authorization_code",
                             "client-id": "clientId",
                             "client-secret": "client-secret",

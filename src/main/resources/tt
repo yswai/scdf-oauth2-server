@@ -18,7 +18,7 @@ spring:
       client:
         registration:
           authserver:
-            redirect-uri: 'http://192.168.0.100:9393/login/oauth2/code/{registrationId}'
+            redirect-uri: 'http://localhost:9393/login/oauth2/code/{registrationId}'
             authorization-grant-type: authorization_code
             client-id: clientId
             client-secret: client-secret
@@ -34,7 +34,7 @@ spring:
           authserver:
             user-name-attribute: name
             token-uri: http://localhost:8080/oauth/token
-            user-info-uri: http://127.0.0.1:8080/me
+            user-info-uri: http://localhost:8080/me
             authorization-uri: http://localhost:8080/oauth/authorize
       resourceserver:
         opaquetoken:
