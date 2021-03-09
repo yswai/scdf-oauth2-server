@@ -47,17 +47,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		http
-				.anonymous().disable()
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and().anonymous().disable()
 				.requestMatchers()
 				.antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
 				.and()
 				.authorizeRequests().anyRequest().authenticated()
 				.and()
-				.formLogin().permitAll()
-				.and()
-				.logout().permitAll().and()
+				.httpBasic().and()
 				.csrf().disable();
 	}
 	
